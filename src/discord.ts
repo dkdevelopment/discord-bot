@@ -1,4 +1,4 @@
-import discord, { TextChannel } from 'discord.js'
+import discord, { TextChannel, ClientEvents } from 'discord.js'
 import getLogger from './helpers/logger'
 
 const client = new discord.Client()
@@ -18,6 +18,10 @@ export const connect = () =>
       reject(error)
     })
   })
+
+export const listener = <T extends keyof ClientEvents>(event: T, handlerFn: (...args: ClientEvents[T]) => void) => [
+  client.on(event, handlerFn)
+]
 
 export const sendMessage = async (
   message: string,
