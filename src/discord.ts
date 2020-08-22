@@ -1,5 +1,6 @@
 import discord, { TextChannel, ClientEvents } from 'discord.js'
 import getLogger from './helpers/logger'
+import createUserMention from './commands/helpers/createUserMention'
 
 const client = new discord.Client()
 const log = getLogger('discord-core')
@@ -34,6 +35,13 @@ export const sendMessage = async (
   await channel.send(message)
   log.trace('Sent message %o - channel %o', message, channel.name)
 }
+
+export const sendMessageWithMention = async (userId: string, message: string, channelId: string) => 
+  sendMessage(`${createUserMention(userId)} ${message}`, channelId)
+
+const getClient = () => client
+
+export default getClient
 
 const assertConnected = () => {
   if (!client.readyAt) {
