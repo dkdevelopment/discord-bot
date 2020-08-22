@@ -1,7 +1,8 @@
-const REQUIRED_ENVS = ['DISCORD_TOKEN', 'DISCORD_CHANNEL_ID']
-const DEFAULT_ENVS = { // todo make use of it
-  CMD_INVOKER: 'db'
-}
+import getLogger from './logger'
+
+const REQUIRED_ENVS = ['DISCORD_TOKEN', 'DISCORD_CHANNEL_ID', 'CMD_INVOKER']
+
+const log = getLogger('env')
 
 const envChecker = () => {
   const missingEnvs = REQUIRED_ENVS.filter(env => !!process.env[env])
