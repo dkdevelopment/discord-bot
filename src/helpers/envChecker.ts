@@ -1,4 +1,4 @@
-const REQUIRED_ENVS = ['DISCORD_TOKEN']
+const REQUIRED_ENVS = ['DISCORD_TOKEN', 'DISCORD_CHANNEL_ID']
 
 const envChecker = () => {
   const missingEnvs = REQUIRED_ENVS.filter(env => !!process.env[env])
