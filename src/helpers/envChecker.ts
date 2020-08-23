@@ -1,6 +1,6 @@
 import getLogger from './logger'
 
-const REQUIRED_ENVS = ['DISCORD_TOKEN', 'DISCORD_CHANNEL_ID', 'CMD_INVOKER']
+const REQUIRED_ENVS = ['DISCORD_TOKEN', 'DISCORD_CHANNEL_ID', 'CMD_INVOKER', 'MONGODB_URI']
 
 const log = getLogger('env')
 
