@@ -2,11 +2,14 @@ import { GuildMember } from 'discord.js'
 import getClient from '../../discord'
 
 /**
- * 
- * @param guildId 
+ *
+ * @param guildId
  * @param roleId role id with format like <&#64;&416335152100426300>
  */
-const getMembersFromRoleId = async (guildId: string, roleId: string): Promise<GuildMember[] | undefined> => {
+const getMembersFromRoleId = async (
+  guildId: string,
+  roleId: string
+): Promise<GuildMember[] | undefined> => {
   const matchResult = roleId.match(/<@&(.*)>/)
   const extractedId = matchResult?.[1]
 
@@ -18,7 +21,9 @@ const getMembersFromRoleId = async (guildId: string, roleId: string): Promise<Gu
 
   const members = await guild.members.fetch()
 
-  return members.array()
+  return members
+    .array()
+    .filter((member: any) => member._roles.includes(extractedId))
 }
 
 export default getMembersFromRoleId
