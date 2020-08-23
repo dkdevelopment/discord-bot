@@ -19,11 +19,9 @@ const getMembersFromRoleId = async (
 
   const guild = await getClient().guilds.fetch(guildId)
 
-  const members = await guild.members.fetch()
+  const role = await guild.roles.fetch(extractedId)
 
-  return members
-    .array()
-    .filter((member: any) => member._roles.includes(extractedId))
+  return role?.members.array()
 }
 
 export default getMembersFromRoleId
